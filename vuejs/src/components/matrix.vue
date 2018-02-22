@@ -15,8 +15,8 @@
     <tr>
       <th v-on:click="addRow"><a class="button is-primary is-rounded">+</a></th>
       <th>Result</th>
-      <th><abbr title="Weight">100%</abbr></th>
-      <th v-for="column in decision_data.solutions" ><abbr title="Played">0</abbr></th>
+      <th><abbr title="Weight">Total</abbr></th>
+      <th v-for="column,index in decision_data.solutions" ><abbr title="Played">{{calculate(index)}}</abbr></th>
     </tr>
   </tfoot>
   <tbody>
@@ -39,10 +39,13 @@ export default {
   methods: {
     addRow: function () {
       this.decision_data.decision_points.push({name: 'new_entry', weight: 0, datagrid: []})
-      this.decision_points.datagrid.push([])
     },
     addColumn: function () {
       this.decision_data.solutions.push({name: 'new_entry'})
+    },
+    calculate: function (column) {
+      const add = (a, b) => a + b
+      return this.decision_data.decision_points.map(entry => parseInt(entry.weight) * (entry.datagrid[column] ? parseInt(entry.datagrid[column]) : 0)).reduce(add)
     }
   },
   data () {
