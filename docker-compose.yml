@@ -1,0 +1,19 @@
+version: '3'
+services:
+  dev:
+   container_name: decision
+   build:
+     context: .
+     dockerfile: Dockerfile
+   command: bash -c "bundle install && bundle exec rails s -p 3000 -b '0.0.0.0'"
+   ports:
+     - "3000:3000"
+   volumes:
+     - ../decision-matrix:/myapp
+   depends_on:
+     - postgres-decision
+
+  postgres-decision:
+    container_name: postgres-decision
+    image: postgres:9.6
+
