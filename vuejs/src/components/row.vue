@@ -1,9 +1,9 @@
 <template>
     <tr>
       <th>{{index}}</th>
-      <td>{{row.name}}</td>
-      <td>{{row.weight}}</td>
-      <td v-for="column in solutions">0</td>
+      <td><input class="input" v-model="row.name"></input></td>
+      <td><input class="input" v-model="row.weight"></input></td>
+      <td v-for="column,col_index in solutions"><input class="input" v-model="row.datagrid[col_index]"></input></td>
     </tr>
 </template>
 

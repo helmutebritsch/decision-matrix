@@ -8,12 +8,12 @@
       <th>Requirement</th>
       <th><abbr title="Weight">Weight</abbr></th>
       <th v-for="column in decision_data.solutions"><abbr title="Played">{{column.name}}</abbr></th>
-      <th v-on:click="addColumn"><a class="button">+</a></th>
+      <th v-on:click="addColumn"><a class="button is-primary is-rounded">+</a></th>
     </tr>
   </thead>
   <tfoot>
     <tr>
-      <th v-on:click="addRow"><a class="button">+</a></th>
+      <th v-on:click="addRow"><a class="button is-primary is-rounded">+</a></th>
       <th>Result</th>
       <th><abbr title="Weight">100%</abbr></th>
       <th v-for="column in decision_data.solutions" ><abbr title="Played">0</abbr></th>
@@ -38,7 +38,8 @@ export default {
   },
   methods: {
     addRow: function () {
-      this.decision_data.decision_points.push({name: 'new_entry', weight: 0})
+      this.decision_data.decision_points.push({name: 'new_entry', weight: 0, datagrid: []})
+      this.decision_points.datagrid.push([])
     },
     addColumn: function () {
       this.decision_data.solutions.push({name: 'new_entry'})
@@ -48,14 +49,10 @@ export default {
     return {
       decision_data: {
         decision_points: [
-          {name: 'schlurf', weight: 0.10},
-          {name: 'gnorf', weight: 0.10},
-          {name: 'gnorf2', weight: 0.10}
+          {name: 'new_entry', weight: 0, datagrid: []},
         ],
         solutions: [
-          {name: 'SuperAwesome'},
-          {name: 'SuperAwesome 2'},
-          {name: 'SuperAwesome 3'}
+          {name: 'new_solution'},
         ]
       }
     }
