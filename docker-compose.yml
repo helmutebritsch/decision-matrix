@@ -13,6 +13,17 @@ services:
    depends_on:
      - postgres-decision
 
+  web:
+    container_name: decision-web
+    build:
+      context: vuejs
+      dockerfile: Dockerfile
+    command: npm run dev
+    ports:
+        - "8080:8080"
+    volumes:
+      - ./vuejs:/code
+
   postgres-decision:
     container_name: postgres-decision
     image: postgres:9.6
