@@ -7,7 +7,7 @@
       <th><abbr title="Position">Pos</abbr></th>
       <th>Requirement</th>
       <th><abbr title="Weight">Weight</abbr></th>
-      <th v-for="column in decision_data.solutions"><abbr title="Played">{{column.name}}</abbr></th>
+      <th v-for="column in decision_data.solutions"><input class="input" v-model="column.name"></th>
       <th v-on:click="addColumn"><a class="button is-primary is-rounded">+</a></th>
     </tr>
   </thead>
