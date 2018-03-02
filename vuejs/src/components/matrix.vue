@@ -24,7 +24,19 @@
   </tbody>
 </table>
 </div>
-{{decision_data}}
+<div class="columns">
+  <div class="column">
+    <h3>JSON download</h3>
+    <textarea cols="100" rows="30">
+      {{decision_data}}
+    </textarea>
+  </div>
+  <div>
+    <h3>JSON upload</h3>
+    <textarea cols="100" rows="30" v-model="data_dump" @change="uploadJson">
+    </textarea>
+  </div>
+</div>
 </div>
 </template>
 
@@ -46,17 +58,18 @@ export default {
     calculate: function (column) {
       const add = (a, b) => a + b
       return this.decision_data.decision_points.map(entry => parseInt(entry.weight) * (entry.datagrid[column] ? parseInt(entry.datagrid[column]) : 0)).reduce(add)
+    },
+    uploadJson: function() {
+      this.decision_data = JSON.parse(this.data_dump)
     }
   },
   data () {
     return {
+      data_dump: "",
       decision_data: {
-        decision_points: [
-          {name: 'new_entry', weight: 0, datagrid: []},
-        ],
-        solutions: [
-          {name: 'new_solution'},
-        ]
+        version: "1",
+        decision_points: [],
+        solutions: []
       }
     }
   }

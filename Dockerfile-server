@@ -1,0 +1,4 @@
+FROM busybox:ubuntu-14.04
+ADD echo_mini_server /
+ADD vuejs/dist/ /public
+CMD ["/echo_mini_server"]

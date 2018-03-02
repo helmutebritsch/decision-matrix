@@ -24,6 +24,14 @@ services:
     volumes:
       - ./vuejs:/code
 
+  server:
+    container_name: go-echo-dm
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+    ports:
+      - "8000:8000"
+
   postgres-decision:
     container_name: postgres-decision
     image: postgres:9.6
